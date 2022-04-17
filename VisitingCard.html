@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="html2pdf.bundle.min.js"></script>
+
+</head>
+
+<body id="con">
+    <h2 class="header"><span style="grid-column: 4/9;">Business Card Maker</span></h2>
+    <h4 class="desc"><span style="grid-column: 2/10;">Please Fill in the following details to generate your Visiting Card</span></h4>
+    <div class="det">
+        <div class="subdet">
+            <input class="cname c cc" id="cname" name="text" placeholder="Company Name"><br>
+            <input class="fname c cc" id="fname" name="text" placeholder="Full Name"><br>
+            <input class="jtitle c cc" id="jtitle" name="text" placeholder="Job Title"><br>
+            <input class="phno c" id="phno" type="tel" placeholder="Phone Number">
+        </div>
+        <div class="subdet">
+            <input class="email c" id="email" type="email" placeholder="Email"> <br>
+            <textarea class="address c cc" id="address" cols="21" rows="3" placeholder="Address"></textarea><br>
+            <input class="web c" id="web" type="url" placeholder="Web Site"><br>
+
+        </div>
+        <div class="subdet bu"> Click the button to create your card:<button class="submit b" onclick="read()">Submit</button></div>
+
+    </div>
+
+    <div class="card" id="card" download>
+        <h2 id="company">Microsoft </h2>
+        <div class="content">
+            <div class="left"><br>
+                <p>
+                    <span id="p">8687297854</span> &emsp;<i class="fas fa-phone-volume"></i>
+                </p>
+                <p>
+                    <span id="e">xyz@gmail.com</span> &emsp;<i class="fas fa-envelope"></i></p>
+
+                <p>
+                    <span id="a">216, 2 Nd Floor, Patanwala Complex, Jhalawar, Ghatkopar, Mumbai, Maharashtra 400-086</span> &emsp;<i class="far fa-address-card"></i></p>
+
+                <p>
+                    <span id="l">www.w3schools.com</span> &emsp;<i class="fas fa-link" id="l"></i></p>
+
+            </div>
+            <div class="right"><br>
+                <h1 id="n">Rajesh Sundar</h1><br>
+                <h3 id="jt">Senior - Manager</h3>
+            </div>
+        </div>
+    </div>
+    <div id="editor"></div>
+    <button id="down" class="b" onclick="pdf()">Download My Card</button>
+</body>
+<style>
+    * {
+        margin: 0%;
+        padding: 0%;
+    }
+    
+    .header {
+        display: grid;
+        background-color: #FA26A0;
+        color: #ffe65c;
+        padding: .5em 0;
+        font-size: x-large;
+    }
+    
+    .desc {
+        display: grid;
+        padding-top: .4em;
+        color: #FF7077;
+        font-size: large;
+    }
+    
+    .det {
+        display: flex;
+    }
+    
+    .subdet {
+        padding-left: 2rem;
+        padding-top: 1rem;
+    }
+    
+    .bu {
+        padding-top: 6.5rem;
+    }
+    
+    #address {
+        margin-top: 6%;
+    }
+    
+    .c {
+        padding-top: .2rem;
+        padding-bottom: .3rem;
+        padding-left: .2rem;
+        margin-top: .5rem;
+        text-align: center;
+    }
+    
+    .cc {
+        text-transform: capitalize;
+    }
+    
+    .b {
+        flex-wrap: wrap;
+        padding: .5rem 1rem;
+        border-color: #FF7077;
+        background-color: #FAF9F6;
+        border-radius: 10%;
+        margin-left: 15%;
+        font-weight: 600;
+    }
+    
+    .b:hover {
+        background-color: #FF7077;
+    }
+    
+    .card {
+        border: 1px solid #EC9EC0;
+        display: flex;
+        justify-content: center;
+        margin-left: 30%;
+        margin-right: 20%;
+        margin-top: 2em;
+        flex-wrap: wrap;
+        background-color: #A91B60;
+        color: #EBE0D0;
+        border-radius: 10rem 100rem / 120rem;
+        padding-left: 3rem;
+        padding-right: 2rem;
+    }
+    
+    .company {
+        justify-content: center;
+        padding-bottom: .9rem;
+    }
+    
+    .content {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .left {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        text-align-last: left;
+        padding-left: .5rem;
+        flex-wrap: wrap;
+        width: 50%;
+        padding-top: 1rem;
+        padding-bottom: 1.5rem;
+    }
+    
+    .right {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: baseline;
+        padding-bottom: .9rem;
+        width: 30%;
+    }
+    
+    @media(max-width:872px) {
+        * {
+            margin: 0%;
+            padding: 0%;
+        }
+        .header {
+            display: grid;
+            background-color: #FA26A0;
+            color: #ffe65c;
+            padding: .5em 0;
+            font-size: x-large;
+        }
+        .desc {
+            display: grid;
+            padding-top: .4em;
+            color: #FF7077;
+            font-size: large;
+            width: fit-content;
+            padding-left: 1.5rem;
+        }
+        .det {
+            display: flex;
+            flex-direction: column;
+            padding-left: 2rem;
+        }
+        .subdet {
+            padding-left: 2rem;
+            padding-top: 1rem;
+        }
+        .bu {
+            padding-top: 1rem;
+        }
+        #address {
+            margin-top: 6%;
+        }
+        #web {
+            margin-top: .9rem;
+        }
+        .c {
+            padding-top: .2rem;
+            padding-bottom: .3rem;
+            padding-left: .2rem;
+            margin-top: .5rem;
+            text-align: center;
+        }
+        .cc {
+            text-transform: capitalize;
+        }
+        .b {
+            flex-wrap: wrap;
+            padding: .5rem 1rem;
+            border-color: #FF7077;
+            background-color: #FAF9F6;
+            border-radius: 10%;
+            margin-left: 15%;
+            font-weight: 600;
+        }
+        .b:hover {
+            background-color: #FF7077;
+        }
+        .card {
+            border: 1px solid #EC9EC0;
+            display: flex;
+            justify-content: center;
+            width: 524px;
+            margin-top: 2em;
+            flex-wrap: wrap;
+            background-color: #A91B60;
+            color: #EBE0D0;
+            border-radius: 10rem 100rem / 120rem;
+            margin-left: 0%;
+        }
+        .company {
+            justify-content: center;
+            padding-bottom: .9rem;
+            margin-left: 0;
+            margin-right: 50em;
+        }
+        .content {
+            display: flex;
+            justify-content: space-between;
+            margin-left: 0rem;
+        }
+        .left {
+            display: flex;
+            flex-direction: column;
+            padding-left: .5rem;
+            flex-wrap: wrap;
+            min-width: 0;
+            max-width: 50%;
+            padding-top: 1rem;
+            padding-bottom: 1.5rem;
+            margin-left: 0%;
+            justify-content: center;
+        }
+        .right {
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: baseline;
+            padding-bottom: .9rem;
+            width: 30%;
+        }
+    }
+</style>
+
+
+<script>
+    function read() {
+        var cname = capitalize(document.getElementById("cname").value);
+        var fname = capitalize(document.getElementById('fname').value);
+        var jtitle = capitalize(document.getElementById('jtitle').value);
+        var phno = document.getElementById('phno').value;
+        var email = document.getElementById('email').value;
+        var address = capitalize(document.getElementById('address').value);
+        var web = document.getElementById('web').value;
+
+        /*var data = {
+            cname: cname,
+            fname: fname,
+            jtitle: jtitle,
+            phno: phno,
+            email: email,
+            address: address,
+            web: web
+        }
+        window.localStorage.setItem('data', JSON.stringify(data));*/
+
+        document.getElementById('company').innerHTML = cname;
+        document.getElementById('p').innerHTML = phno;
+        document.getElementById('e').innerHTML = email;
+        document.getElementById('a').innerHTML = address;
+        document.getElementById('l').innerHTML = web;
+        document.getElementById('n').innerHTML = fname;
+        document.getElementById('jt').innerHTML = jtitle;
+
+        document.getElementById("cname").value = null;
+        document.getElementById('fname').value = null;
+        document.getElementById('jtitle').value = null;
+        document.getElementById('phno').value = null;
+        document.getElementById('email').value = null;
+        document.getElementById('address').value = null;
+        document.getElementById('web').value = null;
+
+    }
+
+    function capitalize(input) {
+        if (input == "")
+            return "";
+        else {
+
+            var words = input.split(' ');
+            var CapitalizedWords = [];
+            words.forEach(element => {
+                CapitalizedWords.push(element[0].toUpperCase() + element.slice(1, element.length));
+            });
+            return CapitalizedWords.join(' ');
+        }
+    }
+
+    function pdf() {
+        var element = document.getElementById('card');
+        var opt = {
+            margin: 0,
+            filename: 'myfile.pdf',
+            image: {
+                type: 'png',
+                quality: 1
+            },
+            html2canvas: {
+                scale: 3
+            },
+            jsPDF: {
+                unit: 'in',
+                format: 'letter',
+                orientation: 'landscape'
+            }
+        };
+        html2pdf(element, opt);
+    }
+</script>
+
+</html>
