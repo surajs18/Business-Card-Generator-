@@ -1,4 +1,4 @@
-# Business-Card-Generator-
+# Business-Card-Generator
 HTML, CSS, JavaScript based project.
 
 UI based project i.e; responsive page.
